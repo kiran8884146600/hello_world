@@ -43,15 +43,22 @@ Steps in the deploy job:
 
 
 - name: Set up AWS credentials
+  
   uses: aws-actions/configure-aws-credentials@v1
   with:
+  
     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  
     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  
     aws-region: us-east-1
   
    This step uses the aws-actions/configure-aws-credentials GitHub Action to set up the AWS credentials required to 
-    interact with AWS services (like Lambda and API Gateway).
-   It pulls the AWS Access Key ID and Secret Access Key from GitHub repository secrets (AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY),
+
+  interact with AWS services (like Lambda and API Gateway).
+
+  It pulls the AWS Access Key ID and Secret Access Key from GitHub repository secrets (AWS_ACCESS_KEY_ID and
+   AWS_SECRET_ACCESS_KEY),
   which should have been previously configured to store sensitive information securely.
   It sets the AWS region as us-east-1, which specifies the AWS region where your Lambda function and API Gateway are
 
