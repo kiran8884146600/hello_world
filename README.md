@@ -7,6 +7,7 @@ Detailed explanation of the steps executed in your CI/CD pipeline.
 
 
 Name: Deploy Lambda Function
+    
     This GitHub Actions workflow is named "Deploy Lambda Function". It is designed to deploy an AWS Lambda function and 
     API Gateway automatically when changes are made to the main branch or when a pull request is opened against it.
 
@@ -33,8 +34,8 @@ Jobs: deploy
 Steps in the deploy job:
      Checkout code
 
-- name: Checkout code
-  uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
     This step uses the actions/checkout GitHub Action to fetch the latest code from the repository. This is required to 
     access the files in the repository and work with them in subsequent steps. The v2 of the action is used here.
