@@ -104,3 +104,32 @@ This step deploys the API Gateway associated with the Lambda function.
 It uses the AWS CLI command aws apigatewayv2 create-deployment to create a new deployment for the API Gateway with a given api-id (in this case, 4jjrp06d1j) and assigns it to a stage named DEV.
 
 The api-id should be replaced with the actual ID of your API Gateway, and you can adjust the stage name based on your deployment requirements.
+
+
+
+
+
+
+Instructions on how to test and verify the application.
+
+
+1) Make changes in the workflow and commit changes
+2) It trigger the workflow in the action
+3) After deployment is successful
+4) check with this  URL
+
+    https://us-east-1tu0wiuvwa.auth.us-east-1.amazoncognito.com/login? 
+    client_id=2d56p1jgu4hnojm3n9bgbqgjqd&redirect_uri=https://4jjrp06d1j.execute-api.us-east- 
+    1.amazonaws.com/DEV/helloworldfunction&response_type=code&scope=email+openid+phone
+
+   Steps to singin
+      >Create new account
+      >Enter mail ID and passaword
+      >Enter the verification code which is send to mail
+                     you will successfully login "Hello world"
+
+   5)Make changes in the sorcecode in the "Hello world" section
+   6)Replace the name with "MY-HELLO-WORLD"
+   7)commit the changes, workflow will trigger after deployment is successful  again check with the above URL it will 
+     display  "MY-HELLO-WORLD"  
+    
