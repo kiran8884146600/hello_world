@@ -144,10 +144,14 @@ Instructions on how to test and verify the application.
 
 
    Steps to singin
+   
       >Create new account
+      
       >Enter mail ID and passaword
+      
       >Enter the verification code which is send to mail
-                     you will successfully login "Hello world"
+
+                             you will successfully login "Hello world"
 
    5)Make changes in the sourcecode in the "Hello world" line
    6)Replace the name with "MY-HELLO-WORLD"
