@@ -59,20 +59,23 @@ Steps in the deploy job:
 
   It pulls the AWS Access Key ID and Secret Access Key from GitHub repository secrets (AWS_ACCESS_KEY_ID and
    AWS_SECRET_ACCESS_KEY),
+
   which should have been previously configured to store sensitive information securely.
   It sets the AWS region as us-east-1, which specifies the AWS region where your Lambda function and API Gateway are
-
   deployed.
+
   Install zip (if not already installed)
 
-
 - name: Install zip (if not already installed)
-  run: sudo apt-get install -y zip
+
+   run: sudo apt-get install -y zip
 
   This step installs the zip utility on the Ubuntu runner. It's needed to create a zip file of the Lambda function code, 
    which is a requirement for deploying to AWS Lambda.
 
-   The command sudo apt-get install -y zip is run to ensure that the zip tool is available for the following steps.
+   The command
+    sudo apt-get install -y zip is run to ensure that the zip tool is available for the following steps.
+
    Create deployment package
 
 - name: Create deployment package
@@ -82,6 +85,7 @@ Steps in the deploy job:
   This step creates a deployment package for the Lambda function. It zips all files in the repository (or specific 
   files, 
   depending on your configuration) into a file named function.zip.
+  
   The zip -r function.zip . command recursively includes all files in the current directory (.) and creates a zip file 
   called function.zip. This zip file is needed for updating the Lambda function.
 
@@ -96,9 +100,15 @@ Deploy to AWS Lambda
       --region us-east-1  # Ensure you use the correct region
 
 This step deploys the zipped Lambda function code to AWS Lambda using the AWS CLI.
-It calls the aws lambda update-function-code command to update the Lambda function with the new code. The --function-name specifies the name of the Lambda function to be updated (helloworldfunction), and --zip-file points to the zip file (function.zip) created earlier.
+
+It calls the aws lambda update-function-code command to update the Lambda function with the new code. The --function-
+
+name specifies the name of the Lambda function to be updated (helloworldfunction), and --zip-file points to the zip file 
+
+(function.zip) created earlier.
 
 The AWS region (us-east-1) is specified to ensure the correct AWS region is used for deployment.
+
 Deploy API Gateway
 
 
@@ -135,7 +145,7 @@ Instructions on how to test and verify the application.
       >Enter the verification code which is send to mail
                      you will successfully login "Hello world"
 
-   5)Make changes in the sorcecode in the "Hello world" section
+   5)Make changes in the sourcecode in the "Hello world" line
    6)Replace the name with "MY-HELLO-WORLD"
    7)commit the changes, workflow will trigger after deployment is successful  again check with the above URL it will 
      display  "MY-HELLO-WORLD"  
