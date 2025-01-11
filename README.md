@@ -131,8 +131,11 @@ Instructions on how to test and verify the application.
 
 
 1) Make changes in the workflow and commit changes
+
 2) It trigger the workflow in the action
+
 3) After deployment is successful
+
 4) check with this  URL
 
 
@@ -154,7 +157,9 @@ Instructions on how to test and verify the application.
                              you will successfully login "Hello world"
 
    5)Make changes in the sourcecode in the "Hello world" line
+   
    6)Replace the name with "MY-HELLO-WORLD"
+   
    7)commit the changes, workflow will trigger after deployment is successful  again check with the above URL it will 
      display  "MY-HELLO-WORLD"  
     
