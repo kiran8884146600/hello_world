@@ -140,9 +140,7 @@ Instructions on how to test and verify the application.
 
 
                 
-    COPY the complete URL ( https://us-east-1tu0wiuvwa.auth.us-east-1.amazoncognito.com/login? 
-    client_id=2d56p1jgu4hnojm3n9bgbqgjqd&redirect_uri=https://4jjrp06d1j.execute-api.us-east- 
-    1.amazonaws.com/DEV/helloworldfunction&response_type=code&scope=email+openid+phone )
+    COPY the complete URL ( https://us-east-1tu0wiuvwa.auth.us-east-1.amazoncognito.com/login?client_id=2d56p1jgu4hnojm3n9bgbqgjqd&redirect_uri=https://4jjrp06d1j.execute-api.us-east-1.amazonaws.com/DEV/helloworldfunction&response_type=code&scope=email+openid+phone )
 
 
    Steps to singin
