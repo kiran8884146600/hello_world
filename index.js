@@ -1,26 +1,44 @@
 const jwt = require("jsonwebtoken");
+const jwksClient = require("jwks-rsa");
+
+const ISSUER_URL = "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_TU0wIUvWa/.well-known/jwks.json";
+
+const client = jwksClient({
+    jwksUri: `${ISSUER_URL}/.well-known/jwks.json`,
+});
+
+function getKey(header, callback) {
+    client.getSigningKey(header.kid, (err, key) => {
+        if (err) {
+            callback(err, null);
+        } else {
+            const signingKey = key.getPublicKey();
+            callback(null, signingKey);
+        }
+    });
+}
 
 exports.handler = async (event) => {
     const token = event.headers.Authorization?.split(" ")[1];
-
     if (!token) {
-        return {
-            statusCode: 401,
-            body: "Unauthorized: No token provided",
-        };
+        return { statusCode: 401, body: "Unauthorized: No token provided" };
     }
 
-    try {
-        // Verify token with Cognito's public key
-        const decoded = jwt.verify(token, "q_eDBUycOORX7vLYLhaHPhHBQsOJj4ln_qGcpnpzM_SDrXt41xQL-4Yoc7SkJRQQKpPEoWqk0qnE4kl4QtgUuc0e6XwFxjfIZS9Pk7ll4vrogp1oC7OVkbhKgKC9zzazcljeO9pJa6yYEfY35WJ2YLRvbl7PtqLM8Jtrpnb8rZ6mYZRmgIIDvdOScj8gX8vTQVcPWPDqwnTiPQTxmSZKkUTIbXo_7wDyEZaEDnrdIlhcESixLelRYAtrbh8ZFbIFwym_5hJAr8lZHj-hK-eXYYG9RlvbZOBXJ6Uwt8e2Q8b1quWl0RtJ_JU8FtLq8iCL3Q-gIw3mvO7E7VxPk-DdrQ"); // Replace with your public key or use jwks-rsa
-        return {
-            statusCode: 200,
-            body: `Hello, ${decoded.email || "User"}!`,
-        };
-    } catch (err) {
-        return {
-            statusCode: 401,
-            body: "Unauthorized: Invalid token",
-        };
-    }
+    return new Promise((resolve) => {
+        jwt.verify(
+            token,
+            getKey,
+            {
+                issuer: ISSUER_URL,
+                algorithms: ["RS256"],
+            },
+            (err, decoded) => {
+                if (err) {
+                    resolve({ statusCode: 401, body: "Unauthorized: Invalid token" });
+                } else {
+                    resolve({ statusCode: 200, body: `Hello, ${decoded.email || "User"}!` });
+                }
+            }
+        );
+    });
 };
