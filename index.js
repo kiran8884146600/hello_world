@@ -12,7 +12,7 @@ exports.handler = async (event) => {
 
     try {
         // Verify token with Cognito's public key
-        const decoded = jwt.verify(token, "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_TU0wIUvWa"); // Replace with your public key or use jwks-rsa
+        const decoded = jwt.verify(token, "q_eDBUycOORX7vLYLhaHPhHBQsOJj4ln_qGcpnpzM_SDrXt41xQL-4Yoc7SkJRQQKpPEoWqk0qnE4kl4QtgUuc0e6XwFxjfIZS9Pk7ll4vrogp1oC7OVkbhKgKC9zzazcljeO9pJa6yYEfY35WJ2YLRvbl7PtqLM8Jtrpnb8rZ6mYZRmgIIDvdOScj8gX8vTQVcPWPDqwnTiPQTxmSZKkUTIbXo_7wDyEZaEDnrdIlhcESixLelRYAtrbh8ZFbIFwym_5hJAr8lZHj-hK-eXYYG9RlvbZOBXJ6Uwt8e2Q8b1quWl0RtJ_JU8FtLq8iCL3Q-gIw3mvO7E7VxPk-DdrQ"); // Replace with your public key or use jwks-rsa
         return {
             statusCode: 200,
             body: `Hello, ${decoded.email || "User"}!`,
