@@ -12,7 +12,7 @@ exports.handler = async (event) => {
 
     try {
         // Verify token with Cognito's public key
-        const decoded = jwt.verify(token, "YOUR_COGNITO_PUBLIC_KEY"); // Replace with your public key or use jwks-rsa
+        const decoded = jwt.verify(token, "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_TU0wIUvWa"); // Replace with your public key or use jwks-rsa
         return {
             statusCode: 200,
             body: `Hello, ${decoded.email || "User"}!`,
